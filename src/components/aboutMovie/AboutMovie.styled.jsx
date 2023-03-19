@@ -8,6 +8,7 @@ export const MovieContainer = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  gap: 15px;
   margin-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid lightgray;
@@ -15,7 +16,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Img = styled.img`
-  display: block;
   width: 300px;
   height: 350px;
 `;
@@ -23,7 +23,11 @@ export const Img = styled.img`
 export const WrapInfo = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
+`;
+
+export const WrapTitle = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 export const Title = styled.h2`

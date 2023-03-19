@@ -7,6 +7,7 @@ import {
   WrapInfo,
   Title,
   Overview,
+  WrapTitle,
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
@@ -15,19 +16,41 @@ const AboutMovie = ({
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
   const imgUrl = poster_path ? `${IMG_URL + poster_path}` : noPoster;
 
+  const getFullYear = release_date => {
+    const dateRelease = new Date(release_date);
+    return dateRelease.getFullYear();
+  };
+
+  // const findGenres = (genres, genre, newGenre) => {
+  //   genres.forEach(el => {
+  //     genre.forEach(({ id, name }) => {
+  //       if (el === id) {
+  //         newGenre.push(name);
+  //       }
+  //     });
+  //   });
+
   return (
     <MovieContainer>
       <button type="button">Go back</button>
       <Wrapper>
         <Img src={imgUrl} alt={title} />
         <WrapInfo>
-          <Title>
-            {title} ({release_date})
-          </Title>
-          <h3>Overview</h3>
-          <Overview>{overview}</Overview>
+          <WrapTitle>
+            <Title>{title}</Title>
+            {release_date !== '' && (
+              <Title>({getFullYear(release_date)})</Title>
+            )}
+          </WrapTitle>
+          {overview !== '' && (
+            <>
+              <h3>Overview</h3>
+              <Overview>{overview}</Overview>
+            </>
+          )}
+
           <h3>Genres</h3>
-          <Overview>[genres]</Overview>
+          <Overview></Overview>
         </WrapInfo>
       </Wrapper>
       <h3>Additional information</h3>
