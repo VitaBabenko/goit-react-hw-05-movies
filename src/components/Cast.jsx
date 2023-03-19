@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import GetMovieCredits from '../services/GetMovieCredits';
-import CastList from './CastList';
+import CastList from './castList/CastList';
+import Loader from './loader/Loader';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -12,22 +13,22 @@ const Cast = () => {
   useEffect(() => {
     setLoading(true);
 
-    setTimeout(() => {
-      GetMovieCredits(movieId)
-        .then(respCast => {
-          console.log(respCast.data.cast);
-          setCast(respCast.data.cast);
-        })
-        .catch(error => setError(error))
-        .finally(() => setLoading(false));
-    }, 2000);
+    GetMovieCredits(movieId)
+      .then(respCast => {
+        console.log(respCast.data.cast);
+        return respCast.data.cast.length === 0
+          ? Promise.reject(new Error('We don`t have any cast for this movie.'))
+          : setCast(respCast.data.cast);
+      })
+      .catch(error => setError(error))
+      .finally(() => setLoading(false));
   }, [movieId]);
 
   return (
     <>
-      {loading && <h2>Loading...</h2>}
-      {error && <h2>Error</h2>}
-      {cast && <CastList cast={cast} />}
+      {loading && <Loader />}
+      {error && <h2>{error.message}</h2>}
+      <CastList cast={cast} />
     </>
   );
 };

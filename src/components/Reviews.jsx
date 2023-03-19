@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import GetMovieReviews from '../services/GetMovieReviews';
 import ReviewsList from './ReviewsList';
+import Loader from './loader/Loader';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -13,26 +14,24 @@ const Reviews = () => {
     setLoading(true);
     setReviews([]);
 
-    setTimeout(() => {
-      GetMovieReviews(movieId)
-        .then(respRev => {
-          console.log(respRev.data.results);
-          setReviews(respRev.data.results);
-        })
-        .catch(error => setError(error))
-        .finally(() => setLoading(false));
-    }, 2000);
+    GetMovieReviews(movieId)
+      .then(respRev => {
+        console.log(respRev.data.results);
+        return respRev.data.results.length === 0
+          ? Promise.reject(
+              new Error('We don`t have any reviews for this movie.')
+            )
+          : setReviews(respRev.data.results);
+      })
+      .catch(error => setError(error))
+      .finally(() => setLoading(false));
   }, [movieId]);
 
   return (
     <>
-      {loading && <h2>Loading...</h2>}
-      {error && <h2>Error</h2>}
-      {reviews.length === 0 ? (
-        <p>We don`t have any reviews for this movie.</p>
-      ) : (
-        <ReviewsList reviews={reviews} />
-      )}
+      {loading && <Loader />}
+      {error && <h2>{error.message}</h2>}
+      <ReviewsList reviews={reviews} />
     </>
   );
 };
