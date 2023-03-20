@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import noPoster from '../../images/no-poster.jpg';
 import {
   MovieContainer,
+  LinkBackTo,
   Wrapper,
   Img,
   WrapInfo,
@@ -32,7 +33,7 @@ const AboutMovie = ({
 
   return (
     <MovieContainer>
-      <button type="button">Go back</button>
+      <LinkBackTo to="/">Go back</LinkBackTo>
       <Wrapper>
         <Img src={imgUrl} alt={title} />
         <WrapInfo>

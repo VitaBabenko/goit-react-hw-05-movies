@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import GetMovieDetails from '../services/GetMovieDetails';
@@ -29,7 +30,9 @@ const MovieDetails = () => {
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
       {!loading && <AboutMovie movie={movie} />}
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
