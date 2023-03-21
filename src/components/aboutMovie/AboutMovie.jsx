@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import noPoster from '../../images/no-poster.jpg';
 import {
   MovieContainer,
@@ -12,8 +12,11 @@ import {
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
-  movie: { poster_path, title, release_date, overview },
+  movie: { id, poster_path, title, release_date, overview },
 }) => {
+  const location = useLocation();
+  console.log(location);
+
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
   const imgUrl = poster_path ? `${IMG_URL + poster_path}` : noPoster;
 
@@ -33,7 +36,7 @@ const AboutMovie = ({
 
   return (
     <MovieContainer>
-      <LinkBackTo to="/">Go back</LinkBackTo>
+      <LinkBackTo to={location.state?.from ?? '/'}>Go back</LinkBackTo>
       <Wrapper>
         <Img src={imgUrl} alt={title} />
         <WrapInfo>

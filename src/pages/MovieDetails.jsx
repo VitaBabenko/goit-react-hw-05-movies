@@ -16,7 +16,6 @@ const MovieDetails = () => {
 
     GetMovieDetails(movieId)
       .then(respMovieId => {
-        console.log(respMovieId.data);
         setMovie(respMovieId.data);
       })
       .catch(error => {
@@ -30,7 +29,7 @@ const MovieDetails = () => {
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
       {!loading && <AboutMovie movie={movie} />}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </>
