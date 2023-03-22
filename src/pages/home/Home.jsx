@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+// import InfiniteScroll from 'react-infinite-scroll-component';
 import GetTrending from '../../services/GetTrending';
 import Loader from '../../components/loader/Loader';
 import MovieList from '../../components/movieList/MovieList';
@@ -32,9 +32,9 @@ const Home = () => {
       .finally(() => setLoading(false));
   }, [page]);
 
-  const FetchMoreData = () => {
-    setPage(prevPage => prevPage + 1);
-  };
+  // const FetchMoreData = () => {
+  //   setPage(prevPage => prevPage + 1);
+  // };
 
   return (
     <>
@@ -42,7 +42,7 @@ const Home = () => {
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
       {movies && <MovieList movies={movies} />}
-      <div
+      {/* <div
         id="scrollableDiv"
         style={{
           height: 300,
@@ -60,13 +60,8 @@ const Home = () => {
           loader={<h4>Loading...</h4>}
           scrollableTarget="scrollableDiv"
         >
-          {/* {movies.map((_, index) => (
-            <div movie={movie} key={index}>
-              div - #{index}
-            </div>
-          ))} */}
         </InfiniteScroll>
-      </div>
+      </div> */}
     </>
   );
 };
