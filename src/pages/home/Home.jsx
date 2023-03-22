@@ -7,10 +7,10 @@ import { Title } from './Home.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [totalResults, setTotalResults] = useState(null);
+  // const [setTotalResults] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -18,15 +18,13 @@ const Home = () => {
     GetTrending(page)
       .then(respMovies => {
         console.log(respMovies.data);
-        return (
-          page === 1
-            ? setMovies(respMovies.data.results)
-            : setMovies(prevMovies => [
-                ...prevMovies,
-                ...respMovies.data.results,
-              ]),
-          setTotalResults(respMovies.data.total_results)
-        );
+        return page === 1
+          ? setMovies(respMovies.data.results)
+          : setMovies(prevMovies => [
+              ...prevMovies,
+              ...respMovies.data.results,
+            ]);
+        // setTotalResults(respMovies.data.total_results)
       })
       .catch(error => setError(error))
       .finally(() => setLoading(false));
