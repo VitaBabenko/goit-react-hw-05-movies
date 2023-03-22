@@ -16,7 +16,6 @@ const Reviews = () => {
 
     GetMovieReviews(movieId)
       .then(respRev => {
-        console.log(respRev.data.results);
         return respRev.data.results.length === 0
           ? Promise.reject(
               new Error('We don`t have any reviews for this movie.')

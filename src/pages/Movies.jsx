@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Loader from '../components/loader/Loader';
 import MovieList from '../components/movieList/MovieList';
+import { Form, Input, Btn } from '../components/movieList/MovieList.styled';
 import GetSearchMovieByKeyword from '../services/GetSearchMovieByKeyword';
 
 const Movies = () => {
@@ -20,17 +21,14 @@ const Movies = () => {
 
     setLoading(true);
 
-    setTimeout(() => {
-      GetSearchMovieByKeyword(movieId)
-        .then(respData => {
-          console.log(respData.data.results);
-          setMovies(respData.data.results);
-        })
-        .catch(error => {
-          setError(error);
-        })
-        .finally(() => setLoading(false));
-    }, 2000);
+    GetSearchMovieByKeyword(movieId)
+      .then(respData => {
+        setMovies(respData.data.results);
+      })
+      .catch(error => {
+        setError(error);
+      })
+      .finally(() => setLoading(false));
   }, [movieId]);
 
   const updateQueryString = evt => {
@@ -47,18 +45,18 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={updateQueryString}>
-        <input
+      <Form onSubmit={updateQueryString}>
+        <Input
           type="text"
           name="movieId"
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
         />
-        <button type="submit">
+        <Btn type="submit">
           <span>Search</span>
-        </button>
-      </form>
+        </Btn>
+      </Form>
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
       {movies && !loading && <MovieList movies={movies} />}

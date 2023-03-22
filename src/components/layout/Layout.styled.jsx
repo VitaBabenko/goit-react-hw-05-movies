@@ -7,14 +7,15 @@ export const Container = styled.div`
 
 export const List = styled.nav`
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 25px;
   padding: 15px;
   border-bottom: 1px solid lightgray;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
 `;
 
 export const NavLink = styled(Link)`
-  font-size: 20px;
+  font-size: 25px;
   color: black;
   text-decoration: none;
 

@@ -3,8 +3,6 @@ import { Link as LinkBack } from 'react-router-dom';
 
 export const MovieContainer = styled.div`
   margin-top: 15px;
-  border-bottom: 1px solid lightgray;
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
 `;
 
 export const LinkBackTo = styled(LinkBack)`

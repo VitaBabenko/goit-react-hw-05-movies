@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import noPoster from '../../images/no-poster.jpg';
 import { List, ListItem, Img, Wrapper, NameP } from './CastList.styled';
 
@@ -19,6 +20,16 @@ const CastList = ({ cast }) => {
       ))}
     </List>
   );
+};
+
+CastList.propTypes = {
+  cast: PropTypes.arrayOf(
+    PropTypes.shape({
+      cast_id: PropTypes.number.isRequired,
+      profile_path: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default CastList;

@@ -15,7 +15,6 @@ const Cast = () => {
 
     GetMovieCredits(movieId)
       .then(respCast => {
-        console.log(respCast.data.cast);
         return respCast.data.cast.length === 0
           ? Promise.reject(new Error('We don`t have any cast for this movie.'))
           : setCast(respCast.data.cast);

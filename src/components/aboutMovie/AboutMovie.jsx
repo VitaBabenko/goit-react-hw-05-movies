@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import noPoster from '../../images/no-poster.jpg';
 import {
   MovieContainer,
@@ -12,10 +14,10 @@ import {
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
-  movie: { id, poster_path, title, release_date, overview },
+  movie: { poster_path, title, release_date, overview },
 }) => {
   const location = useLocation();
-  console.log(location);
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
   const imgUrl = poster_path ? `${IMG_URL + poster_path}` : noPoster;
@@ -36,7 +38,7 @@ const AboutMovie = ({
 
   return (
     <MovieContainer>
-      <LinkBackTo to={location.state?.from ?? '/'}>Go back</LinkBackTo>
+      <LinkBackTo to={backLinkLocationRef.current}>Go back</LinkBackTo>
       <Wrapper>
         <Img src={imgUrl} alt={title} />
         <WrapInfo>
@@ -60,14 +62,27 @@ const AboutMovie = ({
       <h3>Additional information</h3>
       <ul>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" state={{ from: location }}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews" state={{ from: location }}>
+            Reviews
+          </Link>
         </li>
       </ul>
     </MovieContainer>
   );
+};
+
+AboutMovie.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default AboutMovie;
