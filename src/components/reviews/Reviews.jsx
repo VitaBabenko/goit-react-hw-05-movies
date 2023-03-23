@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import GetMovieReviews from '../../services/GetMovieReviews';
-import ReviewsList from '../ReviewsList';
+import ReviewsList from '../reviewsList/ReviewsList';
 import Loader from '../loader/Loader';
 import { ErrorTitle } from './Reviews.styled';
 

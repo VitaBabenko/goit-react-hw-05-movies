@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import noPoster from '../../images/no-poster.jpg';
 import {
@@ -9,8 +9,12 @@ import {
   Img,
   WrapInfo,
   Title,
+  TitleOverview,
   Overview,
   WrapTitle,
+  InfoWrap,
+  List,
+  LinkList,
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
@@ -55,31 +59,33 @@ const AboutMovie = ({
           </WrapTitle>
           {overview !== '' && (
             <>
-              <h3>Overview</h3>
+              <TitleOverview>Overview</TitleOverview>
               <Overview>{overview}</Overview>
             </>
           )}
           {/* {genres.length > 0 && (
             <> */}
-          <h3>Genres</h3>
+          <TitleOverview>Genres</TitleOverview>
           <Overview></Overview>
           {/* </>
           )} */}
         </WrapInfo>
       </Wrapper>
-      <h3>Additional information</h3>
-      <ul>
-        <li>
-          <Link to="cast" state={{ from: location }}>
-            Cast
-          </Link>
-        </li>
-        <li>
-          <Link to="reviews" state={{ from: location }}>
-            Reviews
-          </Link>
-        </li>
-      </ul>
+      <InfoWrap>
+        <h3>Additional information</h3>
+        <List>
+          <li>
+            <LinkList to="cast" state={{ from: location }}>
+              Cast
+            </LinkList>
+          </li>
+          <li>
+            <LinkList to="reviews" state={{ from: location }}>
+              Reviews
+            </LinkList>
+          </li>
+        </List>
+      </InfoWrap>
     </MovieContainer>
   );
 };

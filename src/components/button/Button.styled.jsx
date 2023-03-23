@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 
 export const Btn = styled.button`
-  margin-top: 70px;
+  /* margin-top: 70px; */
+  margin-top: 80px;
+  padding: 6px 14px;
+  font-size: 15px;
   margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
   border-radius: 2px;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   display: block;
   cursor: pointer;
   font-family: inherit;
-  font-size: 18px;
+  /* font-size: 18px; */
   line-height: 24px;
   font-style: normal;
   font-weight: 500;

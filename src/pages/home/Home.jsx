@@ -41,7 +41,7 @@ const Home = () => {
       <Title>Trending today</Title>
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
-      {movies && <MovieList movies={movies} />}
+      <MovieList movies={movies} />
       {movies.length < totalResults && <Button onClick={handleButton} />}
     </>
   );

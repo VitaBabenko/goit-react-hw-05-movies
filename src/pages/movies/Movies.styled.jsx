@@ -6,8 +6,13 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  width: 300px;
-  height: 25px;
+  width: 200px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    width: 300px;
+    height: 25px;
+  }
 `;
 
 export const Btn = styled.button`
