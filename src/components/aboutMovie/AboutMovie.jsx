@@ -14,7 +14,7 @@ import {
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
-  movie: { poster_path, title, release_date, overview },
+  movie: { poster_path, title, release_date, overview, genres },
 }) => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
@@ -22,19 +22,24 @@ const AboutMovie = ({
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
   const imgUrl = poster_path ? `${IMG_URL + poster_path}` : noPoster;
 
-  const getFullYear = release_date => {
+  const getFullYear = () => {
     const dateRelease = new Date(release_date);
     return dateRelease.getFullYear();
   };
 
-  // const findGenres = (genres, genre, newGenre) => {
-  //   genres.forEach(el => {
-  //     genre.forEach(({ id, name }) => {
-  //       if (el === id) {
-  //         newGenre.push(name);
-  //       }
-  //     });
-  //   });
+  // const findGenreName = () => {
+  //   const genresArr = [];
+
+  //   // genres.forEach(({ name }) => {
+  //   //   findGenres.push(name);
+  //   // });
+
+  //   for (const genre of genres) {
+  //     genresArr.push(genre.name);
+  //   }
+  //   // return genresArr;
+  //   console.log(genresArr);
+  // };
 
   return (
     <MovieContainer>
@@ -54,9 +59,12 @@ const AboutMovie = ({
               <Overview>{overview}</Overview>
             </>
           )}
-
+          {/* {genres.length > 0 && (
+            <> */}
           <h3>Genres</h3>
           <Overview></Overview>
+          {/* </>
+          )} */}
         </WrapInfo>
       </Wrapper>
       <h3>Additional information</h3>
@@ -78,10 +86,10 @@ const AboutMovie = ({
 
 AboutMovie.propTypes = {
   movie: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    overview: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    overview: PropTypes.string,
   }).isRequired,
 };
 

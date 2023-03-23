@@ -25,9 +25,9 @@ const CastList = ({ cast }) => {
 CastList.propTypes = {
   cast: PropTypes.arrayOf(
     PropTypes.shape({
-      cast_id: PropTypes.number.isRequired,
-      profile_path: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      cast_id: PropTypes.number,
+      profile_path: PropTypes.string,
+      name: PropTypes.string,
     })
   ).isRequired,
 };

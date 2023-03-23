@@ -4,10 +4,10 @@ import Layout from './layout/Layout';
 import GlobalStyle from './GlobalStyle';
 
 const Home = lazy(() => import('../pages/home/Home'));
-const Movies = lazy(() => import('../pages/Movies'));
-const MovieDetails = lazy(() => import('../pages/MovieDetails'));
-const Cast = lazy(() => import('./Cast'));
-const Reviews = lazy(() => import('./Reviews'));
+const Movies = lazy(() => import('../pages/movies/Movies'));
+const MovieDetails = lazy(() => import('../pages/movieDetails/MovieDetails'));
+const Cast = lazy(() => import('./cast/Cast'));
+const Reviews = lazy(() => import('./reviews/Reviews'));
 
 export const App = () => {
   return (

@@ -14,7 +14,11 @@ const MovieList = ({ movies }) => {
         <ListItem key={movie.id}>
           <Link to={`/movies/${movie.id}`} state={{ from: location }}>
             {movie.poster_path !== null && (
-              <Img src={`${IMG_URL + movie.poster_path}`} alt={movie.title} />
+              <Img
+                src={`${IMG_URL + movie.poster_path}`}
+                alt={movie.title}
+                width="200"
+              />
             )}
             {movie.poster_path === null && (
               <img src={noPoster} alt={movie.title} />

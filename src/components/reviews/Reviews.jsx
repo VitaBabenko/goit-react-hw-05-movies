@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import GetMovieReviews from '../services/GetMovieReviews';
-import ReviewsList from './ReviewsList';
-import Loader from './loader/Loader';
+import GetMovieReviews from '../../services/GetMovieReviews';
+import ReviewsList from '../ReviewsList';
+import Loader from '../loader/Loader';
+import { ErrorTitle } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -29,7 +30,7 @@ const Reviews = () => {
   return (
     <>
       {loading && <Loader />}
-      {error && <h2>{error.message}</h2>}
+      {error && <ErrorTitle>{error.message}</ErrorTitle>}
       <ReviewsList reviews={reviews} />
     </>
   );

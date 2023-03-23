@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import GetMovieCredits from '../services/GetMovieCredits';
-import CastList from './castList/CastList';
-import Loader from './loader/Loader';
+import GetMovieCredits from '../../services/GetMovieCredits';
+import CastList from '../castList/CastList';
+import Loader from '../loader/Loader';
+import { ErrorTitle } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -26,7 +27,7 @@ const Cast = () => {
   return (
     <>
       {loading && <Loader />}
-      {error && <h2>{error.message}</h2>}
+      {error && <ErrorTitle>{error.message}</ErrorTitle>}
       <CastList cast={cast} />
     </>
   );

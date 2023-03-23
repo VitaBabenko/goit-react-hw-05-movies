@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const List = styled.ul`
   display: flex;
   gap: 30px;
+  row-gap: 90px;
   padding-left: 5px;
   padding-right: 5px;
   flex-wrap: wrap;
@@ -11,7 +12,12 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  width: 210px;
+  height: 310px;
   > a {
+    width: 210px;
+    height: 310px;
+    /* margin-top: 50px; */
     text-decoration: none;
     color: black;
     width: 200px;
@@ -23,7 +29,9 @@ export const ListItem = styled.li`
 `;
 
 export const Img = styled.img`
-  width: 200px;
+  /* width: 200px; */
+  width: 100%;
+  height: 100%;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
@@ -32,23 +40,9 @@ export const Img = styled.img`
 `;
 
 export const MovieName = styled.p`
-  width: 200px;
+  width: 100%;
   font-size: 18px;
   text-align: center;
   margin: 0;
   padding: 10px;
-`;
-
-export const Form = styled.form`
-  margin-top: 15px;
-`;
-
-export const Input = styled.input`
-  width: 300px;
-  height: 25px;
-`;
-
-export const Btn = styled.button`
-  cursor: pointer;
-  height: 25px;
 `;
