@@ -4,8 +4,9 @@ export const List = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 19px;
+  justify-content: center;
+  gap: 25px;
+  padding: 0;
 `;
 
 export const ListItem = styled.li`

@@ -29,7 +29,7 @@ CastList.propTypes = {
       profile_path: PropTypes.string,
       name: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
 
 export default CastList;

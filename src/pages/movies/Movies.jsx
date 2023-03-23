@@ -1,7 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useWindowScroll } from 'react-use';
 import Loader from '../../components/loader/Loader';
 import MovieList from '../../components/movieList/MovieList';
+import ButtonTop from '../../components/buttonTop/ButtonTop';
 import { Form, Input, Btn } from './Movies.styled';
 import GetSearchMovieByKeyword from '../../services/GetSearchMovieByKeyword';
 
@@ -11,8 +13,8 @@ const Movies = () => {
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieId = searchParams.get('movieId') ?? '';
-
-  console.log(movieId);
+  const BtnRef = useRef();
+  const { y } = useWindowScroll();
 
   useEffect(() => {
     if (!movieId) {
@@ -44,9 +46,17 @@ const Movies = () => {
     evt.currentTarget.reset();
   };
 
+  const handleButtonTop = () => {
+    const { top } = BtnRef.current.getBoundingClientRect();
+    window.scrollTo({
+      top,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
-      <Form onSubmit={updateQueryString}>
+      <Form onSubmit={updateQueryString} ref={BtnRef}>
         <Input
           type="text"
           name="movieId"
@@ -61,6 +71,7 @@ const Movies = () => {
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
       <MovieList movies={movies} />
+      {y > 500 && <ButtonTop onClick={handleButtonTop} />}
     </>
   );
 };

@@ -21,7 +21,7 @@ ReviewsList.propTypes = {
       author: PropTypes.string,
       content: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
 
 export default ReviewsList;

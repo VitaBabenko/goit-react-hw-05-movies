@@ -14,6 +14,8 @@ export const MovieContainer = styled.div`
 
   @media (min-width: 768px) {
     margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 `;
 
@@ -49,6 +51,7 @@ export const LinkBackTo = styled(LinkBack)`
 export const Wrapper = styled.div`
   margin-top: 20px;
   text-align: center;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid lightgray;
@@ -56,7 +59,6 @@ export const Wrapper = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: row;
-    padding-bottom: 10px;
   }
 `;
 
@@ -97,6 +99,10 @@ export const Title = styled.h2`
 
 export const TitleOverview = styled.h3`
   font-size: 16px;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export const Overview = styled.p`
@@ -105,18 +111,36 @@ export const Overview = styled.p`
   margin-bottom: 0;
 
   @media (min-width: 768px) {
-    padding-right: 12px;
     padding-left: 0;
   }
 `;
 
+export const TitleInfo = styled.h3`
+  margin-top: 0;
+`;
+
 export const InfoWrap = styled.div`
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 `;
 
 export const List = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    list-style: circle;
+    padding-left: 30px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const LinkList = styled(LinkInfo)`

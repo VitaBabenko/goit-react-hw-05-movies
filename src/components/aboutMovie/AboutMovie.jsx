@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useWindowScroll } from 'react-use';
+import ButtonTop from '../buttonTop/ButtonTop';
 import PropTypes from 'prop-types';
 import noPoster from '../../images/no-poster.jpg';
 import {
@@ -15,6 +17,7 @@ import {
   InfoWrap,
   List,
   LinkList,
+  TitleInfo,
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
@@ -22,6 +25,8 @@ const AboutMovie = ({
 }) => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
+  const BtnRef = useRef();
+  const { y } = useWindowScroll();
 
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
   const imgUrl = poster_path ? `${IMG_URL + poster_path}` : noPoster;
@@ -29,6 +34,14 @@ const AboutMovie = ({
   const getFullYear = () => {
     const dateRelease = new Date(release_date);
     return dateRelease.getFullYear();
+  };
+
+  const handleButtonTop = () => {
+    const { top } = BtnRef.current.getBoundingClientRect();
+    window.scrollTo({
+      top,
+      behavior: 'smooth',
+    });
   };
 
   // const findGenreName = () => {
@@ -46,7 +59,7 @@ const AboutMovie = ({
   // };
 
   return (
-    <MovieContainer>
+    <MovieContainer ref={BtnRef}>
       <LinkBackTo to={backLinkLocationRef.current}>Go back</LinkBackTo>
       <Wrapper>
         <Img src={imgUrl} alt={title} />
@@ -72,7 +85,7 @@ const AboutMovie = ({
         </WrapInfo>
       </Wrapper>
       <InfoWrap>
-        <h3>Additional information</h3>
+        <TitleInfo>Additional information</TitleInfo>
         <List>
           <li>
             <LinkList to="cast" state={{ from: location }}>
@@ -86,6 +99,7 @@ const AboutMovie = ({
           </li>
         </List>
       </InfoWrap>
+      {y > 500 && <ButtonTop onClick={handleButtonTop} />}
     </MovieContainer>
   );
 };
@@ -96,7 +110,7 @@ AboutMovie.propTypes = {
     title: PropTypes.string,
     release_date: PropTypes.string,
     overview: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
 export default AboutMovie;

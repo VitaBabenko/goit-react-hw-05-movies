@@ -17,7 +17,6 @@ export const ListItem = styled.li`
   > a {
     width: 210px;
     height: 310px;
-    /* margin-top: 50px; */
     text-decoration: none;
     color: black;
     width: 200px;
@@ -29,7 +28,6 @@ export const ListItem = styled.li`
 `;
 
 export const Img = styled.img`
-  /* width: 200px; */
   width: 100%;
   height: 100%;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);

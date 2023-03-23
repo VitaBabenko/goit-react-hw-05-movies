@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useWindowScroll } from 'react-use';
 import GetTrending from '../../services/GetTrending';
 import Loader from '../../components/loader/Loader';
 import Button from '../../components/button/Button';
+import ButtonTop from '../../components/buttonTop/ButtonTop';
 import MovieList from '../../components/movieList/MovieList';
 import { Title } from './Home.styled';
 
@@ -11,6 +13,8 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [totalResults, setTotalResults] = useState(null);
+  const BtnRef = useRef();
+  const { y } = useWindowScroll();
 
   useEffect(() => {
     setLoading(true);
@@ -36,13 +40,22 @@ const Home = () => {
     setPage(prevPage => prevPage + 1);
   };
 
+  const handleButtonTop = () => {
+    const { top } = BtnRef.current.getBoundingClientRect();
+    window.scrollTo({
+      top,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
-      <Title>Trending today</Title>
+      <Title ref={BtnRef}>Trending today</Title>
       {loading && <Loader />}
       {error && <h2>{error.message}</h2>}
       <MovieList movies={movies} />
       {movies.length < totalResults && <Button onClick={handleButton} />}
+      {y > 500 && <ButtonTop onClick={handleButtonTop} />}
     </>
   );
 };
