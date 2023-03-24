@@ -14,7 +14,6 @@ const MovieDetails = () => {
   const [error, setError] = useState(null);
 
   const location = useLocation();
-  console.log(location);
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {

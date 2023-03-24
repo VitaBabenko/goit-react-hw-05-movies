@@ -9,7 +9,7 @@ export const ErrorTitle = styled.h2`
   text-align: center;
   font-family: inherit;
   font-size: 20px;
-  margin: 0;
+  margin-top: 50px;
 `;
 
 export const LinkToBack = styled(LinkBackTo)`

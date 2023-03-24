@@ -36,6 +36,20 @@ const AboutMovie = ({
     return dateRelease.getFullYear();
   };
 
+  const findGenreName = genres => {
+    const newArr = [];
+
+    genres.forEach(({ name }) => {
+      newArr.push(name);
+    });
+
+    return newArr;
+  };
+
+  const genresArr = [{ id: 12, name: 'inna' }];
+  const finalGenres = findGenreName(genresArr);
+  console.log(finalGenres.join(', '));
+
   const handleButtonTop = () => {
     const { top } = BtnRef.current.getBoundingClientRect();
     window.scrollTo({
@@ -43,20 +57,6 @@ const AboutMovie = ({
       behavior: 'smooth',
     });
   };
-
-  // const findGenreName = () => {
-  //   const genresArr = [];
-
-  //   // genres.forEach(({ name }) => {
-  //   //   findGenres.push(name);
-  //   // });
-
-  //   for (const genre of genres) {
-  //     genresArr.push(genre.name);
-  //   }
-  //   // return genresArr;
-  //   console.log(genresArr);
-  // };
 
   return (
     <MovieContainer ref={BtnRef}>
@@ -72,13 +72,13 @@ const AboutMovie = ({
           </WrapTitle>
           {overview !== '' && (
             <>
-              <TitleOverview>Overview</TitleOverview>
+              <TitleOverview>Overview:</TitleOverview>
               <Overview>{overview}</Overview>
             </>
           )}
           {/* {genres.length > 0 && (
             <> */}
-          <TitleOverview>Genres</TitleOverview>
+          <TitleOverview>Genres:</TitleOverview>
           <Overview></Overview>
           {/* </>
           )} */}
@@ -110,6 +110,11 @@ AboutMovie.propTypes = {
     title: PropTypes.string,
     release_date: PropTypes.string,
     overview: PropTypes.string,
+    // genres: PropTypes.arrayOf(
+    //   PropTypes.shape({
+    //     name: PropTypes.string,
+    //   })
+    // ),
   }),
 };
 

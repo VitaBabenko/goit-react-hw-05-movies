@@ -4,7 +4,7 @@ import { useWindowScroll } from 'react-use';
 import Loader from '../../components/loader/Loader';
 import MovieList from '../../components/movieList/MovieList';
 import ButtonTop from '../../components/buttonTop/ButtonTop';
-import { Form, Input, Btn } from './Movies.styled';
+import { Form, Input, Btn, ErrorMessage } from './Movies.styled';
 import GetSearchMovieByKeyword from '../../services/GetSearchMovieByKeyword';
 
 const Movies = () => {
@@ -20,13 +20,18 @@ const Movies = () => {
     if (!movieId) {
       return;
     }
-
     setLoading(true);
 
     GetSearchMovieByKeyword(movieId.trim())
       .then(respData => {
-        console.log(respData.data);
-        setMovies(respData.data.results);
+        if (respData.data.total_results === 0) {
+          return Promise.reject(
+            new Error(
+              'Sorry, there are no movies matching your search query. Please try again.'
+            )
+          );
+        }
+        return setMovies(respData.data.results);
       })
       .catch(error => {
         setError(error);
@@ -36,12 +41,14 @@ const Movies = () => {
 
   const updateQueryString = evt => {
     evt.preventDefault();
+    setMovies([]);
     const movieIdValue = evt.currentTarget.elements.movieId.value;
     if (movieIdValue.trim() === '') {
       setSearchParams({});
       alert('Fill out the field, please.');
       return;
     }
+    setError(null);
     setSearchParams({ movieId: movieIdValue });
     evt.currentTarget.reset();
   };
@@ -69,8 +76,8 @@ const Movies = () => {
         </Btn>
       </Form>
       {loading && <Loader />}
-      {error && <h2>{error.message}</h2>}
-      <MovieList movies={movies} />
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
+      {!error && !loading && <MovieList movies={movies} />}
       {y > 500 && <ButtonTop onClick={handleButtonTop} />}
     </>
   );

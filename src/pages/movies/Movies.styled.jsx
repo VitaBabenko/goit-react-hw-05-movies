@@ -19,3 +19,14 @@ export const Btn = styled.button`
   cursor: pointer;
   height: 25px;
 `;
+
+export const ErrorMessage = styled.h2`
+  font-family: inherit;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 40px;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+`;

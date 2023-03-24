@@ -5,6 +5,7 @@ export const List = styled.ul`
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
   text-align: center;
   list-style: none;
   padding: 0;
@@ -13,10 +14,15 @@ export const List = styled.ul`
   @media (min-width: 768px) {
     max-width: 750px;
   }
+
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
 `;
 
 export const Text = styled.p`
   padding: 8px;
+  margin-top: 0;
 
   @media (min-width: 768px) {
     padding-left: 20px;

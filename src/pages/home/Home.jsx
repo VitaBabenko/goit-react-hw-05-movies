@@ -5,7 +5,7 @@ import Loader from '../../components/loader/Loader';
 import Button from '../../components/button/Button';
 import ButtonTop from '../../components/buttonTop/ButtonTop';
 import MovieList from '../../components/movieList/MovieList';
-import { Title } from './Home.styled';
+import { Title, ErrorMessage } from './Home.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -21,7 +21,6 @@ const Home = () => {
 
     GetTrending(page)
       .then(respMovies => {
-        console.log(respMovies.data);
         return (
           page === 1
             ? setMovies(respMovies.data.results)
@@ -52,7 +51,7 @@ const Home = () => {
     <>
       <Title ref={BtnRef}>Trending today</Title>
       {loading && <Loader />}
-      {error && <h2>{error.message}</h2>}
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <MovieList movies={movies} />
       {movies.length < totalResults && <Button onClick={handleButton} />}
       {y > 500 && <ButtonTop onClick={handleButtonTop} />}

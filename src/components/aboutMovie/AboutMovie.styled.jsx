@@ -10,12 +10,18 @@ export const MovieContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     max-width: 300px;
+    border-bottom: 1px solid lightgray;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+    padding-bottom: 15px;
   }
 
   @media (min-width: 768px) {
     margin-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
+    border-bottom: 1px solid lightgray;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+    padding-bottom: 15px;
   }
 `;
 
@@ -122,7 +128,6 @@ export const TitleInfo = styled.h3`
 export const InfoWrap = styled.div`
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 10px;
 
   @media (min-width: 768px) {
     text-align: left;
@@ -139,7 +144,6 @@ export const List = styled.ul`
   @media (min-width: 768px) {
     list-style: circle;
     padding-left: 30px;
-    margin-bottom: 40px;
   }
 `;
 
