@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useWindowScroll } from 'react-use';
-import ButtonTop from '../buttonTop/ButtonTop';
+import ButtonUp from '../buttonUp/ButtonUp';
 import PropTypes from 'prop-types';
 import noPoster from '../../images/no-poster.jpg';
 import {
@@ -10,9 +10,11 @@ import {
   Wrapper,
   Img,
   WrapInfo,
+  TitleMovie,
   Title,
   TitleOverview,
   Overview,
+  WrapName,
   WrapTitle,
   InfoWrap,
   List,
@@ -21,7 +23,7 @@ import {
 } from './AboutMovie.styled';
 
 const AboutMovie = ({
-  movie: { poster_path, title, release_date, overview, genres },
+  movie: { poster_path, title, release_date, genres, overview, vote_average },
 }) => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
@@ -37,18 +39,13 @@ const AboutMovie = ({
   };
 
   const findGenreName = genres => {
-    const newArr = [];
-
-    genres.forEach(({ name }) => {
-      newArr.push(name);
-    });
-
-    return newArr;
+    if (!genres) {
+      return;
+    }
+    let newArr = [];
+    genres.forEach(genre => newArr.push(genre.name));
+    return newArr.join(', ');
   };
-
-  const genresArr = [{ id: 12, name: 'inna' }];
-  const finalGenres = findGenreName(genresArr);
-  console.log(finalGenres.join(', '));
 
   const handleButtonTop = () => {
     const { top } = BtnRef.current.getBoundingClientRect();
@@ -64,24 +61,22 @@ const AboutMovie = ({
       <Wrapper>
         <Img src={imgUrl} alt={title} />
         <WrapInfo>
-          <WrapTitle>
-            <Title>{title}</Title>
-            {release_date !== '' && (
-              <Title>({getFullYear(release_date)})</Title>
-            )}
-          </WrapTitle>
+          <WrapName>
+            <WrapTitle>
+              <TitleMovie>{title}</TitleMovie>
+              {release_date !== '' && (
+                <Title>({getFullYear(release_date)})</Title>
+              )}{' '}
+            </WrapTitle>
+            <Title>{findGenreName(genres)}</Title>
+          </WrapName>
           {overview !== '' && (
             <>
               <TitleOverview>Overview:</TitleOverview>
               <Overview>{overview}</Overview>
             </>
           )}
-          {/* {genres.length > 0 && (
-            <> */}
-          <TitleOverview>Genres:</TitleOverview>
-          <Overview></Overview>
-          {/* </>
-          )} */}
+          <TitleOverview>Vote-average: {vote_average}</TitleOverview>
         </WrapInfo>
       </Wrapper>
       <InfoWrap>
@@ -99,7 +94,7 @@ const AboutMovie = ({
           </li>
         </List>
       </InfoWrap>
-      {y > 500 && <ButtonTop onClick={handleButtonTop} />}
+      {y > 500 && <ButtonUp onClick={handleButtonTop} />}
     </MovieContainer>
   );
 };
@@ -109,12 +104,13 @@ AboutMovie.propTypes = {
     poster_path: PropTypes.string,
     title: PropTypes.string,
     release_date: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+      })
+    ),
     overview: PropTypes.string,
-    // genres: PropTypes.arrayOf(
-    //   PropTypes.shape({
-    //     name: PropTypes.string,
-    //   })
-    // ),
+    vote_average: PropTypes.number,
   }),
 };
 

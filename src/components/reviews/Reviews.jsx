@@ -14,7 +14,6 @@ const Reviews = () => {
   useEffect(() => {
     setLoading(true);
     setReviews([]);
-
     GetMovieReviews(movieId)
       .then(respRev => {
         return respRev.data.results.length === 0

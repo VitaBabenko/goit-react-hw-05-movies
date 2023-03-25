@@ -3,6 +3,8 @@ import { Link as LinkBackTo } from 'react-router-dom';
 
 export const ErrorWrap = styled.div`
   margin-top: 20px;
+  margin-left: 8px;
+  margin-right: 8px;
 `;
 
 export const ErrorTitle = styled.h2`

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useWindowScroll } from 'react-use';
 import Loader from '../../components/loader/Loader';
 import MovieList from '../../components/movieList/MovieList';
-import ButtonTop from '../../components/buttonTop/ButtonTop';
+import ButtonUp from '../../components/buttonUp/ButtonUp';
 import { Form, Input, Btn, ErrorMessage } from './Movies.styled';
 import GetSearchMovieByKeyword from '../../services/GetSearchMovieByKeyword';
 
@@ -21,7 +21,6 @@ const Movies = () => {
       return;
     }
     setLoading(true);
-
     GetSearchMovieByKeyword(movieId.trim())
       .then(respData => {
         if (respData.data.total_results === 0) {
@@ -78,7 +77,7 @@ const Movies = () => {
       {loading && <Loader />}
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       {!error && !loading && <MovieList movies={movies} />}
-      {y > 500 && <ButtonTop onClick={handleButtonTop} />}
+      {y > 500 && <ButtonUp onClick={handleButtonTop} />}
     </>
   );
 };

@@ -89,10 +89,32 @@ export const WrapInfo = styled.div`
   }
 `;
 
+export const WrapName = styled.div`
+  @media (min-width: 1200px) {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+`;
+
 export const WrapTitle = styled.div`
   @media (min-width: 768px) {
     display: flex;
     gap: 10px;
+  }
+`;
+
+export const TitleMovie = styled.h2`
+  font-size: 28px;
+  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    margin-top: 6px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 30px;
+    margin-top: 3px;
   }
 `;
 

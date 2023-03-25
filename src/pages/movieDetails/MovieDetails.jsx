@@ -18,10 +18,8 @@ const MovieDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-
     GetMovieDetails(movieId)
       .then(respMovieId => {
-        console.log(respMovieId);
         setMovie(respMovieId.data);
       })
       .catch(error => {

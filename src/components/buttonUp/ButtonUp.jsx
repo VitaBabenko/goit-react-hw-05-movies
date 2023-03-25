@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { BtnTop } from './ButtonTop.styled';
 import { BsArrowUpCircle } from 'react-icons/bs';
+import { BtnUp } from './ButtonUp.styled';
 
 const ButtonTop = ({ onClick }) => {
   return (
-    <BtnTop type="button" onClick={onClick}>
+    <BtnUp type="button" onClick={onClick}>
       <BsArrowUpCircle size={30} />
-    </BtnTop>
+    </BtnUp>
   );
 };
 

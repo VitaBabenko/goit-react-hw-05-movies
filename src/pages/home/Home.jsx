@@ -3,7 +3,7 @@ import { useWindowScroll } from 'react-use';
 import GetTrending from '../../services/GetTrending';
 import Loader from '../../components/loader/Loader';
 import Button from '../../components/button/Button';
-import ButtonTop from '../../components/buttonTop/ButtonTop';
+import ButtonUp from '../../components/buttonUp/ButtonUp';
 import MovieList from '../../components/movieList/MovieList';
 import { Title, ErrorMessage } from './Home.styled';
 
@@ -18,7 +18,6 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-
     GetTrending(page)
       .then(respMovies => {
         return (
@@ -54,7 +53,7 @@ const Home = () => {
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <MovieList movies={movies} />
       {movies.length < totalResults && <Button onClick={handleButton} />}
-      {y > 500 && <ButtonTop onClick={handleButtonTop} />}
+      {y > 500 && <ButtonUp onClick={handleButtonTop} />}
     </>
   );
 };

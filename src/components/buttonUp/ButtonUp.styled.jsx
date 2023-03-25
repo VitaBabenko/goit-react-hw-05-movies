@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const BtnTop = styled.button`
-  display: block;
+export const BtnUp = styled.button`
+  display: flex;
   justify-content: center;
   align-items: center;
-
   position: fixed;
   right: 2%;
   bottom: 10%;
+  z-index: 10;
   cursor: pointer;
   background-color: inherit;
   border: none;

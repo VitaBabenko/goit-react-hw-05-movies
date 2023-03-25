@@ -22,4 +22,9 @@ export const NavLink = styled(Link)`
   &.active {
     color: red;
   }
+
+  &:hover {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1.12);
+  }
 `;

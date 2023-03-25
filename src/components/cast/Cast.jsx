@@ -13,7 +13,6 @@ const Cast = () => {
 
   useEffect(() => {
     setLoading(true);
-
     GetMovieCredits(movieId)
       .then(respCast => {
         return respCast.data.cast.length === 0
